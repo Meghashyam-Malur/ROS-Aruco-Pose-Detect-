@@ -1,13 +1,15 @@
 # ROS-Aruco-Pose-Detect-
 Simple ROS Launch Files and procedure to implement Aruco marker detection and 6 DOF Pose estimation
 
+# Start ROS
+
 roscore
 
 # opening simple usbcame node:
 
 rosrun usb_cam usb_cam_node
 
-#performing camera calibration:
+# performing camera calibration:
 
 
 rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.02517 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check
@@ -23,7 +25,7 @@ K = [828.9369597414833, 0.0, 318.74153675428596, 0.0, 831.3300981774705, 232.332
 R = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
 P = [854.5978393554688, 0.0, 320.3380834205891, 0.0, 0.0, 857.84619140625, 233.2079072136985, 0.0, 0.0, 0.0, 1.0, 0.0]
 None
-# oST version 5.0 parameters
+#oST version 5.0 parameters
 
 
 [image]
@@ -59,7 +61,7 @@ D = [0.08959309131208465, 0.1927316472201394, 0.002308237487304637, 0.0039229130
 K = [828.9369597414833, 0.0, 318.74153675428596, 0.0, 831.3300981774705, 232.33240733025008, 0.0, 0.0, 1.0]
 R = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
 P = [854.5978393554688, 0.0, 320.3380834205891, 0.0, 0.0, 857.84619140625, 233.2079072136985, 0.0, 0.0, 0.0, 1.0, 0.0]
-# oST version 5.0 parameters
+#oST version 5.0 parameters
 
 
 [image]
@@ -91,8 +93,9 @@ projection
 0.000000 0.000000 1.000000 0.000000
 
 
-Setting up Ros Single  Aruco Detection node:
+# Setting up Ros Single  Aruco Detection node:
 
+# Usb Camera stram publisher Launch file: 
 
 usb_cam_stream_publisher.launch
 
@@ -111,6 +114,7 @@ usb_cam_stream_publisher.launch
 </node>
 </launch>
 
+# Aruco Marker Detection and Pose Estimation Launch file:
 Aruco_marker_finder.launch:
 
 <launch>
@@ -144,10 +148,11 @@ roslaunch usb_cam_stream_publisher.launch
 
 roslaunch aruco_marker_finder.launch markerId:=701 markerSize:=0.05
 
-#and open image view uner Plugins>Vizualizations>Image View to see results
+# open image view uner Plugins>Vizualizations>Image View to see results:
+
 rosrun rqt_gui rqt_gui
 
-#to see pose values
+# to see pose values:
 rostopic echo /aruco_single/pose
 
 
