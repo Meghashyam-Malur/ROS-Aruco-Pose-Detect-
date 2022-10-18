@@ -1,15 +1,14 @@
 ## Start ROS
 
-roscore
+`roscore`
 
 ## opening simple usbcame node:
 
-rosrun usb_cam usb_cam_node
+`rosrun usb_cam usb_cam_node`
 
 ## performing camera calibration:
 
-
-rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.0200 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check
+`rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.0200 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check`
 
 Note: --size parameter need to be changed in accordance with the (m-1)x(n-1)values for an m x n grid used for calibration
       --square parameter needs to be changed in accordance with the side lenght of each square of grid here 200mm
@@ -94,12 +93,13 @@ projection
 0.000000 0.000000 1.000000 0.000000
 
 
-## Setting up Ros Single  Aruco Detection node:
+## Setting up Ros Single Aruco Detection node:
 
 ### Usb Camera stream publisher Launch file: 
 
 usb_cam_stream_publisher.launch
 
+```ROS
 <launch>
 <arg name="video_device" default="/dev/video0" />
 <arg name="image_width" default="640" />
@@ -114,11 +114,13 @@ usb_cam_stream_publisher.launch
 <param name="io_method" value="mmap"/>
 </node>
 </launch>
+```
 
 ### Aruco Marker Detection and Pose Estimation Launch file:
 
 Aruco_marker_finder.launch
 
+```
 <launch>
 
 <arg name="markerId" default="701"/>
@@ -141,22 +143,32 @@ Aruco_marker_finder.launch
 </node>
 
 </launch>
-
+```
 
 ##  Startup Procedure:
 
 In multiple terminals opened in same location as above launch files run following commands in same order:
 
-Terminal 1: roslaunch usb_cam_stream_publisher.launch 
+Terminal 1: 
 
-Terminal 2: roslaunch aruco_marker_finder.launch markerId:=701 markerSize:=0.05
-             
-            Note: markerId parameter to define which specific marker to look for
-                  markerSize parameter to define side length of aruco marker to look for
-                  if the above two parameters are not passed, default values will be used as defined in the launch files
+`roslaunch usb_cam_stream_publisher.launch`
 
-Terminal 3: rosrun rqt_gui rqt_gui //Note: in rqt gui open image view which can be found under Plugins > Vizualizations > Image View  to see results
+Terminal 2: 
 
-Terminal 4: rostopic echo /aruco_single/pose //To view the Aruco marker position and orientation
+`roslaunch aruco_marker_finder.launch markerId:=701 markerSize:=0.05`
+
+Note: markerId parameter to define which specific marker to look for
+      markerSize parameter to define side length of aruco marker to look for
+      if the above two parameters are not passed, default values will be used as defined in the launch files
+
+Terminal 3:
+
+`rosrun rqt_gui rqt_gui`
+
+Note: in rqt gui open image view which can be found under Plugins > Vizualizations > Image View  to see results
+
+Terminal 4: 
+
+`rostopic echo /aruco_single/pose //To view the Aruco marker position and orientation`
 
 
