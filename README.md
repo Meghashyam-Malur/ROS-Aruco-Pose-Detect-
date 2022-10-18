@@ -1,8 +1,8 @@
-## Start ROS
+## Start ROS:
 
 `roscore`
 
-## opening simple usbcame node:
+## opening simple usbcam node:
 
 `rosrun usb_cam usb_cam_node`
 
