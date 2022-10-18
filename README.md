@@ -1,15 +1,12 @@
-# ROS-Aruco-Pose-Detect-
-Simple ROS Launch Files and procedure to implement Aruco marker detection and 6 DOF Pose estimation
-
-# Start ROS
+## Start ROS
 
 roscore
 
-# opening simple usbcame node:
+## opening simple usbcame node:
 
 rosrun usb_cam usb_cam_node
 
-# performing camera calibration:
+## performing camera calibration:
 
 
 rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.02517 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check
@@ -93,9 +90,9 @@ projection
 0.000000 0.000000 1.000000 0.000000
 
 
-# Setting up Ros Single  Aruco Detection node:
+## Setting up Ros Single  Aruco Detection node:
 
-# Usb Camera stram publisher Launch file: 
+### Usb Camera stram publisher Launch file: 
 
 usb_cam_stream_publisher.launch
 
@@ -114,7 +111,7 @@ usb_cam_stream_publisher.launch
 </node>
 </launch>
 
-# Aruco Marker Detection and Pose Estimation Launch file:
+### Aruco Marker Detection and Pose Estimation Launch file:
 Aruco_marker_finder.launch:
 
 <launch>
@@ -148,11 +145,11 @@ roslaunch usb_cam_stream_publisher.launch
 
 roslaunch aruco_marker_finder.launch markerId:=701 markerSize:=0.05
 
-# open image view uner Plugins>Vizualizations>Image View to see results:
+## open image view uner Plugins>Vizualizations>Image View to see results:
 
 rosrun rqt_gui rqt_gui
 
-# to see pose values:
+## to see pose values:
 rostopic echo /aruco_single/pose
 
 
