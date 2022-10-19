@@ -1,26 +1,50 @@
-## Start ROS:
+# Introduction:
 
+The objective of this repo is to define a simple process to achieve detection and pose estimation of an aruco marker.
+
+The procedure is can be divided into 2 parts,
+
+      1) The calibration of the USB Camera
+      
+      2) The writing and running of Launch files and visulazation tools to perform detection and pose estimation of aruco markers
+
+Camera calibration is extremly important for the aruco marker detection process so be sure to perform the entire calibration process as explained in the documentation. the calibration show below is specific to our implementation and hence is to only be used as refrence.
+
+Camera calibration documentation and other resources used:
+
+http://wiki.ros.org/camera_calibration
+
+https://ros-developer.com/2017/04/23/camera-calibration-with-ros/
+
+# Procedure:
+## Camera Calibration:
+
+### Start ROS:
 `roscore`
 
-## opening simple usbcam node:
+### opening simple usbcam node:
 
 `rosrun usb_cam usb_cam_node`
 
-## performing camera calibration:
+### performing camera calibration:
 
 `rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.0200 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check`
 
 Note: 
+
 --size parameter need to be changed in accordance with the (m-1)x(n-1)values for an m x n grid used for calibration
 
 --square parameter needs to be changed in accordance with the side lenght of each square of grid here 200mm
       
 --no-service-check is to prevent warnings due to absence of calibration filewhen calibration is being performed for the first time
 
-Note:  has been done  as of 7/10/22 need not be done again
+Note:  has been done  as of 7/10/22 need not be done again [Local refrenece information]
 
-### Result For reference:
+### Result of camera calibration For reference:
 
+Terminal Output:
+
+```
 **** Calibrating ****
 mono pinhole calibration...
 D = [0.08959309131208465, 0.1927316472201394, 0.002308237487304637, 0.003922913033686664, 0.0]
@@ -94,7 +118,7 @@ projection
 854.597839 0.000000 320.338083 0.000000
 0.000000 857.846191 233.207907 0.000000
 0.000000 0.000000 1.000000 0.000000
-
+```
 
 ## Setting up Ros Single Aruco Detection node:
 
