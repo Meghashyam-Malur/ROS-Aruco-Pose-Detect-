@@ -10,12 +10,12 @@
 
 `rosrun camera_calibration cameracalibrator.py --size 9x6 --square 0.0200 image:=/usb_cam/image_raw camera:=/usb_cam --no-service-check`
 
-      Note: 
-      --size parameter need to be changed in accordance with the (m-1)x(n-1)values for an m x n grid used for calibration
+Note: 
+--size parameter need to be changed in accordance with the (m-1)x(n-1)values for an m x n grid used for calibration
 
-      --square parameter needs to be changed in accordance with the side lenght of each square of grid here 200mm
+--square parameter needs to be changed in accordance with the side lenght of each square of grid here 200mm
       
-      --no-service-check is to prevent warnings due to absence of calibration filewhen calibration is being performed for the first time
+--no-service-check is to prevent warnings due to absence of calibration filewhen calibration is being performed for the first time
 
 Note:  has been done  as of 7/10/22 need not be done again
 
